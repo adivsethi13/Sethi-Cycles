@@ -1,0 +1,71 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2761
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 document.addEventListener('DOMContentLoaded', function() \{\
+    // Example data for bicycles and accessories\
+    const bicycles = [\
+        \{ id: 1, model: "Mountain Bike", price: 500, color: "Red" \},\
+        \{ id: 2, model: "Road Bike", price: 800, color: "Blue" \},\
+        \{ id: 3, model: "Hybrid Bike", price: 650, color: "Black" \}\
+    ];\
+\
+    const accessories = [\
+        "Helmet", "Gloves", "Water Bottle"\
+    ];\
+\
+    const orders = [];\
+\
+    // Function to display bicycles in the inventory\
+    function displayBicycles() \{\
+        const bicycleList = document.getElementById("bicycle-list");\
+        bicycles.forEach(bicycle => \{\
+            const li = document.createElement("li");\
+            li.textContent = `$\{bicycle.model\} ($\{bicycle.color\}) - $$\{bicycle.price\}`;\
+            bicycleList.appendChild(li);\
+        \});\
+    \}\
+\
+    // Function to display accessories\
+    function displayAccessories() \{\
+        const accessoryList = document.getElementById("accessory-list");\
+        accessories.forEach(accessory => \{\
+            const li = document.createElement("li");\
+            li.textContent = accessory;\
+            accessoryList.appendChild(li);\
+        \});\
+    \}\
+\
+    // Function to simulate adding an order to the queue\
+    function addOrder(bicycleId) \{\
+        const bicycle = bicycles.find(b => b.id === bicycleId);\
+        if (bicycle) \{\
+            orders.push(bicycle);\
+            updateOrderQueue();\
+        \}\
+    \}\
+\
+    // Function to update the order queue display\
+    function updateOrderQueue() \{\
+        const orderQueue = document.getElementById("order-queue");\
+        orderQueue.innerHTML = ''; // Clear current list\
+\
+        orders.forEach(order => \{\
+            const li = document.createElement("li");\
+            li.textContent = `Order for: $\{order.model\} ($\{order.color\}) - $$\{order.price\}`;\
+            orderQueue.appendChild(li);\
+        \});\
+    \}\
+\
+    // Initial setup: display bicycles and accessories\
+    displayBicycles();\
+    displayAccessories();\
+\
+    // Example: Add some orders\
+    addOrder(1);\
+    addOrder(2);\
+\});\
+}
